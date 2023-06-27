@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Input from 'components/Input';
 import { useCallback, useState } from 'react';
 
@@ -13,6 +14,19 @@ const Auth = () => {
       currentVariant === 'Login' ? 'register' : 'login'
     );
   }, []);
+
+  const register = useCallback(async () => {
+    try {
+      await axios.post('/api/register', {
+        email,
+        name,
+        password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password]);
+
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
       <div className="h-full w-full bg-black lg:bg-opacity-50">
@@ -50,7 +64,10 @@ const Auth = () => {
                 value={password}
               />
             </div>
-            <button className="mt-10 w-full rounded-md bg-red-600 py-3 text-white transition hover:bg-red-700">
+            <button
+              onClick={register}
+              className="mt-10 w-full rounded-md bg-red-600 py-3 text-white transition hover:bg-red-700"
+            >
               {variant === 'login' ? 'login' : 'Sign up'}
             </button>
             <p className="mt-12 text-neutral-500">
