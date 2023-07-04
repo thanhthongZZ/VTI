@@ -6,7 +6,7 @@ import useBillboard from '@/hooks/useBillboard';
 const Billboard = () => {
   const { data } = useBillboard();
   return (
-    <div className=" relative h-[56.25vw]">
+    <div className="relative h-[56.25vw]">
       <video
         poster={data?.thumbnailUrl}
         className="h-[56.25vw] w-full object-cover brightness-[60%] transition duration-500"
@@ -15,7 +15,7 @@ const Billboard = () => {
         loop
         src={data?.videoUrl}
       />
-      <div className=" absolute top-[30%] ml-4 md:top-[40%] md:ml-16">
+      <div className="absolute bottom-[8%] ml-4  md:ml-16">
         <p className=" text-1xl h-full w-[50%] font-bold text-white drop-shadow-xl md:text-5xl lg:text-6xl">
           {data?.title}
         </p>
