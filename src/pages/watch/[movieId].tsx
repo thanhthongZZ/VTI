@@ -9,8 +9,7 @@ const Watch = () => {
   const { movieId } = router.query;
 
   const { data } = useMovie(movieId as string);
-  console.log({ data });
-
+console.log(router.query)
   return (
     <div className="h-screen w-screen bg-black">
       <nav className="fixed z-10 flex w-full flex-row items-center gap-8 bg-black bg-opacity-70 p-4">
