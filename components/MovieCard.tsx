@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
+import { BiChevronDown } from 'react-icons/bi';
 import { BsFillPlayFill } from 'react-icons/bs';
+
+import useInfoModal from '@/hooks/useInfoModal';
 
 import FavoriteButton from './FavoriteButton';
 
@@ -10,6 +13,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const router = useRouter();
+  const { openModal } = useInfoModal();
 
   const redirectToWatch = useCallback(
     () => router.push(`/watch/${data.id}`),
@@ -106,6 +110,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
               <BsFillPlayFill size={30} />
             </div>
             <FavoriteButton movieId={data?.id} />
+            <div
+              onClick={() => openModal(data?.id)}
+              className="group/item ml-auto flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-white transition hover:border-neutral-300 lg:h-10 lg:w-10"
+            >
+              <BiChevronDown className="w-4 text-white group-hover/item:text-neutral-300 lg:w-6" />
+            </div>
           </div>
           <p className="mt-4 font-semibold text-green-400">
             New <span className="text-white">2023</span>
